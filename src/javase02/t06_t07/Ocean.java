@@ -1,5 +1,6 @@
-package javase02.t06;
+package javase02.t06_t07;
 
+import java.lang.annotation.*;
 
 public class Ocean {
 
@@ -10,11 +11,19 @@ public class Ocean {
         atomicSubmarine.run();
         System.out.println("It's end of the Ocean...");
     }
+
+    @Target(value= ElementType.FIELD)
+    @Retention(value= RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface Name {
+        String name();
+    }
 }
 
 
 class AtomicSubmarine {
-
+    @Ocean.Name(name="SuperSubmarine")
+    String name;
     private AtomicEngine atomicEngine = new AtomicEngine();
 
      public AtomicSubmarine() {
